@@ -1,0 +1,4 @@
+nemo-toolkit[asr]>=2.7,<3
+PyQt5>=5.15,<6
+torch>=2.7
+torchaudio>=2.7

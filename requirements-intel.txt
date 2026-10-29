@@ -1,0 +1,14 @@
+# PyTorch 2.2.2 is the final release with macOS x86_64 wheels. NeMo 2.4 is
+# the newest compatible NeMo line that can load the bundled Parakeet model.
+nemo-toolkit[asr]==2.4.0
+PyQt5>=5.15,<6
+torch==2.2.2
+torchaudio==2.2.2
+
+# These versions retain prebuilt Python 3.12 Intel wheels. Newer releases
+# have dropped macOS x86_64 wheels and would require a local LLVM toolchain.
+numpy==1.26.4
+numba==0.60.0
+llvmlite==0.43.0
+scipy==1.13.1
+libcst==1.4.0
