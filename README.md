@@ -6,10 +6,10 @@ A desktop app that turns English audio and video into **SRT subtitles, WebVTT ca
 
 Get the Apple Silicon build from [Releases](https://github.com/samoxin1974/Parakeet-SRT-Creator/releases/latest). The app includes the model, Python runtime, dependencies, and FFmpeg, so transcription works offline after installation.
 
-GitHub limits each release asset to under 2 GiB. The installer is provided in two parts:
+GitHub limits each release asset to under 2 GiB. The installer is provided in smaller downloadable parts:
 
-1. Download both `Parakeet-SRT-Creator-Apple-Silicon.dmg.part*` files, `SHA256SUMS`, and `Restore-Installer.command` into the same folder.
-2. Open Terminal, change to that folder, and run `bash Restore-Installer.command`. The script checks the downloads, joins them into a DMG, verifies the complete file, and opens it on macOS.
+1. Download `SHA256SUMS` and `Restore-Installer.command` into the same folder. You can also download all `Parakeet-SRT-Creator-Apple-Silicon.dmg.part*` files yourself; otherwise the script downloads them for you.
+2. Open Terminal, change to that folder, and run `bash Restore-Installer.command`. The script downloads any missing parts, checks the downloads, joins them into a DMG, verifies the complete file, and opens it on macOS.
 3. Drag **Parakeet SRT Creator** into **Applications**.
 
 With the GitHub CLI:

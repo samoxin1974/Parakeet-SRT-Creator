@@ -16,7 +16,7 @@ case "$mode" in
 esac
 
 if [[ ! -f SHA256SUMS ]]; then
-  echo 'Download SHA256SUMS into the same folder as the two parts.' >&2
+  echo 'Download SHA256SUMS into the same folder as this script.' >&2
   exit 1
 fi
 
@@ -31,9 +31,26 @@ verify() {
   printf '%s  %s\n' "$expected" "$file" | shasum -a 256 -c -
 }
 
-verify "$name.part00"
-verify "$name.part01"
-cat "$name.part00" "$name.part01" > "$name.partial"
+parts=()
+while read -r digest file; do
+  case "$file" in
+    "$name".part[0-9][0-9]) parts+=("$file") ;;
+  esac
+done < SHA256SUMS
+if [[ ${#parts[@]} -eq 0 ]]; then
+  echo "No parts listed for $name in SHA256SUMS" >&2
+  exit 1
+fi
+for part in "${parts[@]}"; do
+  if [[ ! -f "$part" ]]; then
+    curl --fail --location --retry 5 --retry-all-errors --retry-delay 1 \
+      --output "$part.partial" \
+      "https://github.com/samoxin1974/Parakeet-SRT-Creator/releases/download/v1.0.0/$part"
+    mv "$part.partial" "$part"
+  fi
+  verify "$part"
+done
+cat "${parts[@]}" > "$name.partial"
 mv "$name.partial" "$name"
 verify "$name"
 

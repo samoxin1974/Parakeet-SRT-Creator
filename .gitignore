@@ -8,7 +8,7 @@ build/
 dist/
 __pycache__/
 *.py[cod]
-release-assets/
+release-assets*/
 vendor/ffmpeg
 vendor/ffmpeg-arm64
 vendor/ffmpeg-x86_64
